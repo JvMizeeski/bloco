@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco 2 Imóveis | O jeito certo de alugar e gerir imóveis</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variáveis de Cores - Guia de Marca Bloco 2 */
+        :root {
+            --neve: #E7EEED;
+            --cinza: #A7C8C1;
+            --esmeralda: #0BCE4E; 
+            --verde-escuro: #073028;
+            --chumbo: #0F1A1E;
+            
+            --font-main: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--neve);
+            color: var(--chumbo);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Tipografia */
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--verde-escuro);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            /* Substitua o src abaixo pelo caminho da sua imagem Logo-Neg-Reduzida-Esmeralda.png */
+            height: 40px;
+            display: flex;
+            align-items: center;
+            color: var(--neve);
+            font-weight: bold;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--esmeralda);
+            color: var(--chumbo);
+        }
+
+        .btn-primary:hover {
+            background-color: #09b343; /* Tom ligeiramente mais escuro para hover */
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--neve);
+            border: 2px solid var(--esmeralda);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--esmeralda);
+            color: var(--chumbo);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--chumbo) 0%, var(--verde-escuro) 100%);
+            color: var(--neve);
+            padding: 160px 5% 100px;
+            text-align: center;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 20px;
+            max-width: 800px;
+        }
+
+        .hero h1 span {
+            color: var(--esmeralda);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            color: var(--cinza);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 5%;
+            background-color: var(--neve);
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            color: var(--verde-escuro);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(7, 48, 40, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--verde-escuro);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .card p {
+            color: #555;
+        }
+
+        /* Region Section */
+        .region {
+            background-color: var(--verde-escuro);
+            color: var(--neve);
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .region h2 {
+            margin-bottom: 20px;
+        }
+
+        .region p {
+            color: var(--cinza);
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .tags {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: rgba(167, 200, 193, 0.1);
+            border: 1px solid var(--esmeralda);
+            color: var(--esmeralda);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--chumbo);
+            color: var(--cinza);
+            text-align: center;
+            padding: 30px 5%;
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero-cta {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+            }
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero {
+                padding-top: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">bloco <span style="color: var(--esmeralda); margin-left: 5px;">2</span></a>
+        <a href="#" class="btn btn-outline" onclick="openWhatsApp('geral')">Falar com Especialista</a>
+    </header>
+
+    <section class="hero">
+        <h1>O jeito certo de <span>alugar e gerir</span> imóveis.</h1>
+        <p>Atendimento próximo, ágil e transparente. Simplificamos o processo para proprietários e inquilinos com total segurança.</p>
+        <div class="hero-cta">
+            <a href="#" class="btn btn-primary" onclick="openWhatsApp('proprietario')">Quero Anunciar meu Imóvel</a>
+            <a href="#" class="btn btn-outline" onclick="openWhatsApp('inquilino')">Quero Alugar um Imóvel</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>Por que escolher a Bloco 2?</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Atendimento Próximo</h3>
+                <p>Esqueça a burocracia fria. Nosso foco é entender a sua necessidade e resolver tudo com rapidez e humanidade.</p>
+            </div>
+            <div class="card">
+                <h3>Agilidade no Processo</h3>
+                <p>Otimizamos cada etapa para que a locação aconteça no menor tempo possível, sem dores de cabeça.</p>
+            </div>
+            <div class="card">
+                <h3>Transparência e Segurança</h3>
+                <p>Clareza em contratos e garantias. Protegemos o patrimônio do proprietário e garantimos os direitos do inquilino.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="region">
+        <h2>Atuamos na Grande Florianópolis</h2>
+        <p>Conhecemos a região a fundo para conectar os melhores imóveis aos inquilinos certos.</p>
+        <div class="tags">
+            <span class="tag">São José</span>
+            <span class="tag">Florianópolis</span>
+            <span class="tag">Palhoça</span>
+            <span class="tag">Biguaçu</span>
+            <span class="tag">Santo Amaro</span>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Bloco 2 Imóveis. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Função para direcionar para o WhatsApp com mensagens personalizadas
+        function openWhatsApp(tipo) {
+            const numero = "554840428081";
+            let mensagem = "";
+
+            switch(tipo) {
+                case 'proprietario':
+                    mensagem = "Olá! Tenho um imóvel na Grande Florianópolis e gostaria de saber mais sobre como anunciar com a Bloco 2.";
+                    break;
+                case 'inquilino':
+                    mensagem = "Olá! Estou buscando um imóvel para alugar e gostaria da ajuda de vocês.";
+                    break;
+                default:
+                    mensagem = "Olá! Gostaria de falar com um especialista da Bloco 2 Imóveis.";
+            }
+
+            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
