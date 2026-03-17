@@ -5,26 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bloco 2 Imóveis | O jeito certo de alugar e gerir imóveis</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
     <style>
-        /* Variáveis de Cores - Guia de Marca Bloco 2 */
-        :root {
-            --neve: #E7EEED;
-            --cinza: #A7C8C1;
-            --esmeralda: #0BCE4E; 
-            --verde-escuro: #073028;
-            --chumbo: #0F1A1E;
-            
-            --font-main: 'Inter', sans-serif;
+        /* ==========================================================================
+           TIPOGRAFIA ORIGINAL (New Science)
+           ========================================================================== */
+        @font-face {
+            font-family: 'New Science';
+            src: url('tipografy/New_Science_Thin.otf') format('opentype');
+            font-weight: 100;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'New Science';
+            src: url('tipografy/New_Science_Light.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'New Science';
+            src: url('tipografy/New_Science_Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'New Science';
+            src: url('tipografy/New_Science_Medium.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'New Science';
+            src: url('tipografy/New_Science_SemiBold.otf') format('opentype');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'New Science';
+            src: url('tipografy/New_Science_Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
         }
 
+        /* ==========================================================================
+           VARIÁVEIS DE COR E ESTILO (Guia da Marca)
+           ========================================================================== */
+        :root {
+            --neve: #E7EEED;
+            --cinzas: #A7C8C1;
+            --verde-medio: #0B5E4E;
+            --verde-escuro: #073028;
+            --chumbo: #0F1A1E;
+            --esmeralda: #00CE7C; 
+            
+            --font-main: 'New Science', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* ==========================================================================
+           RESET E BASE
+           ========================================================================== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            /* Rolagem suave em toda a página */
+            scroll-behavior: smooth; 
         }
 
         body {
@@ -33,18 +89,89 @@
             color: var(--chumbo);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        /* Tipografia */
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
             font-weight: 700;
             line-height: 1.2;
+            letter-spacing: -0.02em;
         }
 
-        /* Header */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ==========================================================================
+           ANIMAÇÕES (Scroll Reveal)
+           ========================================================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ==========================================================================
+           BOTÕES E LINKS
+           ========================================================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-icon {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        .btn-primary {
+            background-color: var(--esmeralda);
+            color: var(--verde-escuro);
+            box-shadow: 0 4px 15px rgba(0, 206, 124, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: #00E68A;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 206, 124, 0.4);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--neve);
+            border: 1px solid rgba(231, 238, 237, 0.3);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(231, 238, 237, 0.1);
+            border-color: var(--neve);
+        }
+
+        /* ==========================================================================
+           HEADER / NAVBAR
+           ========================================================================== */
         header {
-            background-color: var(--verde-escuro);
-            padding: 20px 5%;
+            background-color: rgba(15, 26, 30, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -52,192 +179,503 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            border-bottom: 1px solid rgba(167, 200, 193, 0.1);
         }
 
-        .logo {
-            /* Substitua o src abaixo pelo caminho da sua imagem Logo-Neg-Reduzida-Esmeralda.png */
+        .logo-img {
             height: 40px;
-            display: flex;
-            align-items: center;
-            color: var(--neve);
-            font-weight: bold;
-            font-size: 1.5rem;
-            text-decoration: none;
+            object-fit: contain;
+            transition: var(--transition);
         }
 
-        /* Botões */
-        .btn {
-            display: inline-block;
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background-color: var(--esmeralda);
-            color: var(--chumbo);
-        }
-
-        .btn-primary:hover {
-            background-color: #09b343; /* Tom ligeiramente mais escuro para hover */
-            transform: translateY(-2px);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            color: var(--neve);
-            border: 2px solid var(--esmeralda);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--esmeralda);
-            color: var(--chumbo);
-        }
-
-        /* Hero Section */
+        /* ==========================================================================
+           HERO SECTION COM VÍDEO
+           ========================================================================== */
         .hero {
-            background: linear-gradient(135deg, var(--chumbo) 0%, var(--verde-escuro) 100%);
+            position: relative;
             color: var(--neve);
-            padding: 160px 5% 100px;
-            text-align: center;
-            min-height: 80vh;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            padding: 120px 5% 60px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            /* Gradiente marcante da marca por cima do vídeo */
+            background: linear-gradient(135deg, rgba(15, 26, 30, 0.90) 0%, rgba(7, 48, 40, 0.85) 100%);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tag-hero {
+            display: inline-block;
+            padding: 6px 16px;
+            background-color: rgba(167, 200, 193, 0.1);
+            border: 1px solid rgba(167, 200, 193, 0.3);
+            border-radius: 50px;
+            color: var(--cinzas);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 20px;
-            max-width: 800px;
-        }
-
-        .hero h1 span {
-            color: var(--esmeralda);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 24px;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--cinzas);
             margin-bottom: 40px;
-            max-width: 600px;
-            color: var(--cinza);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .hero-cta {
+        .hero-buttons {
             display: flex;
             gap: 20px;
-            flex-wrap: wrap;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
-        /* Features Section */
-        .features {
-            padding: 80px 5%;
+        /* ==========================================================================
+           TABS SECTION (Alugar vs Anunciar)
+           ========================================================================== */
+        .solutions {
+            padding: 100px 5%;
             background-color: var(--neve);
+        }
+
+        .section-header {
             text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
         }
 
-        .features h2 {
-            font-size: 2.2rem;
-            margin-bottom: 50px;
+        .section-header h2 {
+            font-size: 2.5rem;
             color: var(--verde-escuro);
+            margin-bottom: 16px;
         }
 
-        .grid {
+        .section-header p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .tabs-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 50px;
+            background-color: #fff;
+            padding: 8px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(7, 48, 40, 0.05);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 14px 24px;
+            border: none;
+            background: transparent;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--cinzas);
+            cursor: pointer;
+            border-radius: 8px;
+            transition: var(--transition);
+            font-family: var(--font-main);
+        }
+
+        .tab-btn.active {
+            background-color: var(--verde-escuro);
+            color: var(--neve);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .card {
+        .feature-card {
             background-color: #fff;
             padding: 40px 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(7, 48, 40, 0.05);
-            transition: transform 0.3s ease;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(7, 48, 40, 0.04);
+            transition: var(--transition);
+            border: 1px solid rgba(167, 200, 193, 0.1);
         }
 
-        .card:hover {
-            transform: translateY(-5px);
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--esmeralda);
+            box-shadow: 0 15px 40px rgba(7, 48, 40, 0.08);
         }
 
-        .card h3 {
-            color: var(--verde-escuro);
-            margin-bottom: 15px;
-            font-size: 1.4rem;
-        }
-
-        .card p {
-            color: #555;
-        }
-
-        /* Region Section */
-        .region {
-            background-color: var(--verde-escuro);
-            color: var(--neve);
-            padding: 80px 5%;
-            text-align: center;
-        }
-
-        .region h2 {
+        .feature-icon-img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
             margin-bottom: 20px;
         }
 
-        .region p {
-            color: var(--cinza);
-            max-width: 700px;
-            margin: 0 auto 30px;
+        .feature-card h3 {
+            color: var(--verde-escuro);
+            margin-bottom: 12px;
+            font-size: 1.3rem;
         }
 
-        .tags {
+        .feature-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================================================
+           METODOLOGIA / NÚMEROS
+           ========================================================================== */
+        .method {
+            background: linear-gradient(135deg, var(--verde-escuro) 0%, var(--verde-medio) 100%);
+            color: var(--neve);
+            padding: 100px 5%;
+        }
+
+        .method-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .method-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .method-text p {
+            color: var(--cinzas);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stat-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(167, 200, 193, 0.1);
+            text-align: center;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .stat-icon-img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin: 0 auto 15px;
+            display: block;
+        }
+
+        .stat-box h4 {
+            font-size: 1.8rem;
+            color: var(--esmeralda);
+            margin-bottom: 8px;
+        }
+
+        .stat-box span {
+            color: var(--cinzas);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            word-break: break-word; /* Evita quebra forçada na grid */
+        }
+
+        /* ==========================================================================
+           REGIONS SECTION
+           ========================================================================== */
+        .regions {
+            padding: 100px 5%;
+            background-color: var(--neve);
+            text-align: center;
+        }
+
+        .tags-wrapper {
+            display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
-            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 40px auto 0;
         }
 
         .tag {
-            background-color: rgba(167, 200, 193, 0.1);
-            border: 1px solid var(--esmeralda);
-            color: var(--esmeralda);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
+            background-color: #fff;
+            color: var(--verde-escuro);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(7, 48, 40, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            border: 1px solid transparent;
         }
 
-        /* Footer */
+        .tag:hover {
+            border-color: var(--esmeralda);
+            color: var(--esmeralda);
+            transform: translateY(-3px);
+        }
+
+        /* ==========================================================================
+           FAQ SECTION (Accordion)
+           ========================================================================== */
+        .faq {
+            padding: 100px 5%;
+            background-color: #fff;
+        }
+
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid rgba(7, 48, 40, 0.1);
+            padding: 20px 0;
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--chumbo);
+            transition: var(--transition);
+        }
+
+        .accordion-header:hover {
+            color: var(--verde-medio);
+        }
+
+        .accordion-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            color: var(--esmeralda);
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(45deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            color: #666;
+        }
+
+        .accordion-content p {
+            padding-top: 15px;
+        }
+
+        /* ==========================================================================
+           CTA FINAL
+           ========================================================================== */
+        .cta-final {
+            background-color: var(--verde-escuro);
+            padding: 80px 5%;
+            text-align: center;
+            color: var(--neve);
+            position: relative;
+        }
+
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(0,206,124,0.1) 0%, rgba(0,0,0,0) 60%);
+            pointer-events: none;
+        }
+
+        .cta-final h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-final .btn {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
         footer {
             background-color: var(--chumbo);
-            color: var(--cinza);
+            color: var(--cinzas);
+            padding: 60px 5% 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            border-bottom: 1px solid rgba(167, 200, 193, 0.1);
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-bottom {
             text-align: center;
-            padding: 30px 5%;
             font-size: 0.9rem;
         }
 
-        /* Responsividade */
+        /* ==========================================================================
+           RESPONSIVIDADE (Mobile & Tablet)
+           ========================================================================== */
+        @media (max-width: 992px) {
+            .method-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
-            .hero-cta {
+            /* Hero & Geral */
+            .hero-buttons {
                 flex-direction: column;
             }
-            .btn {
+            .hero-buttons .btn {
                 width: 100%;
             }
-            header {
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            .tabs-nav {
                 flex-direction: column;
+            }
+
+            /* Header: Oculta botão e centraliza a logo */
+            header .btn {
+                display: none;
+            }
+            header {
+                justify-content: center;
+            }
+
+            /* Metodologia Grid: Ajusta padding e fontes para não estourar a caixa */
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .stat-box {
+                padding: 20px 10px;
+            }
+            .stat-box h4 {
+                font-size: 1.4rem;
+            }
+            .stat-box span {
+                font-size: 0.75rem;
+            }
+
+            /* Footer: Logo maior, centralizada e botões empilhados */
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-content .logo {
+                margin: 0 auto 20px auto;
+            }
+            .footer-content .logo-img {
+                height: 70px; /* Aumentado para dar mais destaque */
+            }
+            .footer-actions {
+                flex-direction: column;
+                width: 100%;
                 gap: 15px;
             }
-            .hero {
-                padding-top: 180px;
+            .footer-actions .btn {
+                width: 100%;
+            }
+        }
+
+        /* Telas super pequenas (ex: iPhone SE) */
+        @media (max-width: 400px) {
+            .stats-grid {
+                grid-template-columns: 1fr; /* Empilha as estatísticas em 1 coluna para total segurança */
             }
         }
     </style>
@@ -245,73 +683,301 @@
 <body>
 
     <header>
-        <a href="#" class="logo">bloco <span style="color: var(--esmeralda); margin-left: 5px;">2</span></a>
-        <a href="#" class="btn btn-outline" onclick="openWhatsApp('geral')">Falar com Especialista</a>
+        <a href="#" class="logo">
+            <img src="img/logoheader.png" alt="Bloco 2 Logo" class="logo-img">
+        </a>
+        <button class="btn btn-outline" onclick="openWhatsApp('geral')">
+            Fale Conosco
+        </button>
     </header>
 
-    <section class="hero">
-        <h1>O jeito certo de <span>alugar e gerir</span> imóveis.</h1>
-        <p>Atendimento próximo, ágil e transparente. Simplificamos o processo para proprietários e inquilinos com total segurança.</p>
-        <div class="hero-cta">
-            <a href="#" class="btn btn-primary" onclick="openWhatsApp('proprietario')">Quero Anunciar meu Imóvel</a>
-            <a href="#" class="btn btn-outline" onclick="openWhatsApp('inquilino')">Quero Alugar um Imóvel</a>
-        </div>
-    </section>
-
-    <section class="features">
-        <h2>Por que escolher a Bloco 2?</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Atendimento Próximo</h3>
-                <p>Esqueça a burocracia fria. Nosso foco é entender a sua necessidade e resolver tudo com rapidez e humanidade.</p>
-            </div>
-            <div class="card">
-                <h3>Agilidade no Processo</h3>
-                <p>Otimizamos cada etapa para que a locação aconteça no menor tempo possível, sem dores de cabeça.</p>
-            </div>
-            <div class="card">
-                <h3>Transparência e Segurança</h3>
-                <p>Clareza em contratos e garantias. Protegemos o patrimônio do proprietário e garantimos os direitos do inquilino.</p>
+    <section class="hero reveal active">
+        <video class="hero-video" autoplay loop muted playsinline>
+            <source src="img/videobackground.mp4" type="video/mp4">
+            Seu navegador não suporta a tag de vídeo.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="tag-hero">Grande Florianópolis</span>
+            <h1>O jeito certo de alugar e gerir imóveis.</h1>
+            <p>Esqueça a burocracia e as letras miúdas. Conectamos proprietários e inquilinos com um atendimento próximo, ágil e 100% transparente.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="openWhatsApp('inquilino')">
+                    <img src="img/alugar.png" alt="Alugar" class="btn-icon"> Quero Alugar
+                </button>
+                <button class="btn btn-outline" onclick="openWhatsApp('proprietario')">
+                    <img src="img/anunciar.png" alt="Anunciar" class="btn-icon"> Quero Anunciar
+                </button>
             </div>
         </div>
     </section>
 
-    <section class="region">
-        <h2>Atuamos na Grande Florianópolis</h2>
-        <p>Conhecemos a região a fundo para conectar os melhores imóveis aos inquilinos certos.</p>
-        <div class="tags">
-            <span class="tag">São José</span>
-            <span class="tag">Florianópolis</span>
-            <span class="tag">Palhoça</span>
-            <span class="tag">Biguaçu</span>
-            <span class="tag">Santo Amaro</span>
+    <section class="solutions reveal">
+        <div class="section-header">
+            <h2>Soluções pensadas para você</h2>
+            <p>Seja para encontrar seu novo lar ou para rentabilizar seu patrimônio, nós simplificamos o caminho.</p>
         </div>
+
+        <div class="tabs-nav">
+            <button class="tab-btn active" onclick="openTab(event, 'tab-alugar')">Para Inquilinos</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-anunciar')">Para Proprietários</button>
+        </div>
+
+        <div id="tab-alugar" class="tab-content active">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <img src="img/agil2.png" alt="Aprovação Ágil" class="feature-icon-img">
+                    <h3>Aprovação Ágil</h3>
+                    <p>Processo de análise de crédito desburocratizado para você pegar as chaves o mais rápido possível.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="img/humano.png" alt="Atendimento Humano" class="feature-icon-img">
+                    <h3>Atendimento Humano</h3>
+                    <p>Você não é só um número. Nossa equipe acompanha você desde a visita até a assinatura do contrato.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="img/supresa.png" alt="Sem Surpresas" class="feature-icon-img">
+                    <h3>Sem Surpresas</h3>
+                    <p>Contratos claros e transparentes. Você sabe exatamente o que está pagando, sem taxas ocultas.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn btn-primary" onclick="openWhatsApp('inquilino')">Encontrar meu novo lar</button>
+            </div>
+        </div>
+
+        <div id="tab-anunciar" class="tab-content">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <img src="img/gestao.png" alt="Gestão Segura" class="feature-icon-img">
+                    <h3>Gestão Segura</h3>
+                    <p>Protegemos seu patrimônio com vistorias detalhadas e criteriosa análise de perfil dos inquilinos.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="img/rentabilidade.png" alt="Rentabilidade" class="feature-icon-img">
+                    <h3>Rentabilidade</h3>
+                    <p>Divulgação estratégica para alugar seu imóvel no menor tempo e com o valor justo de mercado.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="img/tranquilidade.png" alt="Tranquilidade Total" class="feature-icon-img">
+                    <h3>Tranquilidade Total</h3>
+                    <p>Nós cuidamos da cobrança, repasses e manutenções. Você só acompanha os resultados.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn btn-primary" onclick="openWhatsApp('proprietario')">Anunciar meu imóvel</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="method reveal">
+        <div class="method-container">
+            <div class="method-text">
+                <h2>Não somos apenas mais uma imobiliária.</h2>
+                <p>Nascemos para quebrar o padrão frio do mercado. Combinamos a eficiência do digital com a empatia do atendimento presencial.</p>
+                <p>O resultado? Locações mais rápidas, seguras e com muito menos atrito entre as partes envolvidas.</p>
+                <button class="btn btn-outline" onclick="openWhatsApp('geral')" style="margin-top: 20px;">
+                    Falar com um consultor
+                </button>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <img src="img/agil.png" alt="Ágil" class="stat-icon-img">
+                    <h4>Ágil</h4>
+                    <span>Sem perda de tempo</span>
+                </div>
+                <div class="stat-box">
+                    <img src="img/seguro.png" alt="Seguro" class="stat-icon-img">
+                    <h4>Seguro</h4>
+                    <span>Análises rigorosas</span>
+                </div>
+                <div class="stat-box">
+                    <img src="img/claro.png" alt="Claro" class="stat-icon-img">
+                    <h4>Claro</h4>
+                    <span>100% Transparente</span>
+                </div>
+                <div class="stat-box">
+                    <img src="img/pessoas.png" alt="Próximo" class="stat-icon-img">
+                    <h4>Próximo</h4>
+                    <span>Foco nas pessoas</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="regions reveal">
+        <div class="section-header">
+            <h2>Onde atuamos</h2>
+            <p>Conhecemos a Grande Florianópolis a fundo. Nossa expertise local garante as melhores conexões entre imóveis e inquilinos.</p>
+        </div>
+        <div class="tags-wrapper">
+            <div class="tag"><i class="ph-fill ph-map-pin"></i> São José</div>
+            <div class="tag"><i class="ph-fill ph-map-pin"></i> Florianópolis</div>
+            <div class="tag"><i class="ph-fill ph-map-pin"></i> Palhoça</div>
+            <div class="tag"><i class="ph-fill ph-map-pin"></i> Biguaçu</div>
+            <div class="tag"><i class="ph-fill ph-map-pin"></i> Santo Amaro</div>
+        </div>
+    </section>
+
+    <section class="faq reveal">
+        <div class="section-header">
+            <h2>Dúvidas Frequentes</h2>
+            <p>Respostas rápidas para as perguntas mais comuns.</p>
+        </div>
+        <div class="accordion">
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    Preciso de fiador para alugar?
+                    <i class="ph ph-plus accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Trabalhamos com diversas modalidades de garantia locatícia modernas e acessíveis, como seguro fiança e título de capitalização, para facilitar a sua locação sem depender de terceiros.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    Como é feita a avaliação do meu imóvel?
+                    <i class="ph ph-plus accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Nossa equipe realiza uma análise mercadológica detalhada da sua região, considerando as características do imóvel, para sugerir um valor justo e atrativo, acelerando a locação.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    O processo é presencial ou digital?
+                    <i class="ph ph-plus accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Você escolhe! Podemos conduzir todo o processo de forma 100% digital para sua comodidade, ou presencialmente com o nosso atendimento próximo e consultivo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-final reveal">
+        <h2>Pronto para uma experiência imobiliária sem dor de cabeça?</h2>
+        <button class="btn btn-primary" onclick="openWhatsApp('geral')" style="font-size: 1.2rem; padding: 20px 40px;">
+            <i class="ph-fill ph-whatsapp-logo" style="font-size: 1.5rem;"></i> Iniciar Atendimento
+        </button>
     </section>
 
     <footer>
-        <p>&copy; 2024 Bloco 2 Imóveis. Todos os direitos reservados.</p>
+        <div class="footer-content">
+            <a href="#" class="logo">
+                <img src="img/logofooter.png" alt="Bloco 2 Logo" class="logo-img">
+            </a>
+            <div class="footer-actions">
+                <button class="btn btn-outline" onclick="openWhatsApp('proprietario')" style="padding: 10px 20px; font-size: 0.9rem;">Área do Proprietário</button>
+                <button class="btn btn-outline" onclick="openWhatsApp('inquilino')" style="padding: 10px 20px; font-size: 0.9rem;">Área do Inquilino</button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Bloco 2 Imóveis. O jeito certo de alugar e gerir imóveis.</p>
+        </div>
     </footer>
 
+    <script src="https://whatsa.me/bt-min.js?link=https://whatsa.me/554831973387/?t=Ol%C3%A1,%20gostaria%20de%20saber%20mais%20sobre%20aluguel%20de%20im%C3%B3veis"></script>
+
     <script>
-        // Função para direcionar para o WhatsApp com mensagens personalizadas
+        // Função do WhatsApp
         function openWhatsApp(tipo) {
-            const numero = "554840428081";
+            const numero = "554831973387";
             let mensagem = "";
 
             switch(tipo) {
                 case 'proprietario':
-                    mensagem = "Olá! Tenho um imóvel na Grande Florianópolis e gostaria de saber mais sobre como anunciar com a Bloco 2.";
+                    mensagem = "Olá! Tenho um imóvel e quero entender como a Bloco 2 pode me ajudar com a locação.";
                     break;
                 case 'inquilino':
-                    mensagem = "Olá! Estou buscando um imóvel para alugar e gostaria da ajuda de vocês.";
+                    mensagem = "Olá! Estou procurando um imóvel para alugar e quero a ajuda da Bloco 2.";
                     break;
                 default:
-                    mensagem = "Olá! Gostaria de falar com um especialista da Bloco 2 Imóveis.";
+                    mensagem = "Olá! Acessei o site da Bloco 2 Imóveis e gostaria de falar com um especialista.";
             }
 
             const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
             window.open(url, '_blank');
         }
+
+        // Sistema de Tabs (Alugar/Anunciar)
+        function openTab(evt, tabName) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].style.display = "none";
+                tabContents[i].classList.remove("active");
+            }
+
+            const tabBtns = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabBtns.length; i++) {
+                tabBtns[i].classList.remove("active");
+            }
+
+            const selectedTab = document.getElementById(tabName);
+            selectedTab.style.display = "block";
+            
+            setTimeout(() => {
+                selectedTab.classList.add("active");
+            }, 10);
+            
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Sistema de Accordion (FAQ)
+        const accordions = document.querySelectorAll('.accordion-header');
+        accordions.forEach(acc => {
+            acc.addEventListener('click', function() {
+                const item = this.parentElement;
+                const content = this.nextElementSibling;
+                
+                document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.accordion-content').style.maxHeight = null;
+                    }
+                });
+
+                item.classList.toggle('active');
+                if (item.classList.contains('active')) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                } else {
+                    content.style.maxHeight = null;
+                }
+            });
+        });
+
+        // Animação de Scroll (Reveal)
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+            const elementVisible = 100;
+
+            reveals.forEach(reveal => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        }
+
+        // Header Background no Scroll
+        function headerScroll() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.padding = "10px 5%";
+                header.style.backgroundColor = "rgba(15, 26, 30, 0.98)";
+            } else {
+                header.style.padding = "15px 5%";
+                header.style.backgroundColor = "rgba(15, 26, 30, 0.95)";
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            revealOnScroll();
+            headerScroll();
+        });
+        
+        revealOnScroll();
     </script>
 </body>
 </html>
