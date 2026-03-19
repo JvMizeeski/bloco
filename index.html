@@ -185,7 +185,7 @@
         }
 
         .logo-img {
-            height: 40px;
+            height: 60px;
             object-fit: contain;
             transition: var(--transition);
         }
@@ -234,7 +234,9 @@
         }
 
         .tag-hero {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             padding: 6px 16px;
             background-color: rgba(167, 200, 193, 0.1);
             border: 1px solid rgba(167, 200, 193, 0.3);
@@ -342,7 +344,7 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
@@ -368,6 +370,14 @@
             height: 48px;
             object-fit: contain;
             margin-bottom: 20px;
+        }
+
+        /* Classe para ícones do phosphor que completam a lista */
+        .feature-icon-ph {
+            font-size: 48px;
+            color: #0F1A1E;
+            margin-bottom: 20px;
+            display: block;
         }
 
         .feature-card h3 {
@@ -447,7 +457,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
-            word-break: break-word; /* Evita quebra forçada na grid */
+            word-break: break-word;
         }
 
         /* ==========================================================================
@@ -595,9 +605,34 @@
             margin-bottom: 30px;
         }
 
-        .footer-actions {
+        .footer-info {
+            max-width: 450px;
+            font-size: 0.95rem;
+        }
+        
+        .footer-info p {
+            margin-bottom: 10px;
+        }
+        
+        .footer-info strong {
+            color: var(--neve);
+        }
+
+        .footer-social {
             display: flex;
-            gap: 20px;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .footer-social a {
+            color: var(--neve);
+            font-size: 2.2rem;
+            transition: var(--transition);
+        }
+
+        .footer-social a:hover {
+            color: var(--esmeralda);
+            transform: translateY(-3px);
         }
 
         .footer-bottom {
@@ -637,7 +672,7 @@
                 justify-content: center;
             }
 
-            /* Metodologia Grid: Ajusta padding e fontes para não estourar a caixa */
+            /* Metodologia Grid */
             .stats-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 12px;
@@ -652,31 +687,26 @@
                 font-size: 0.75rem;
             }
 
-            /* Footer: Logo maior, centralizada e botões empilhados */
+            /* Footer */
             .footer-content {
                 flex-direction: column;
                 text-align: center;
             }
             .footer-content .logo {
-                margin: 0 auto 20px auto;
+                margin: 0 auto 10px auto;
             }
             .footer-content .logo-img {
-                height: 70px; /* Aumentado para dar mais destaque */
+                height: 70px; 
             }
-            .footer-actions {
-                flex-direction: column;
-                width: 100%;
-                gap: 15px;
-            }
-            .footer-actions .btn {
-                width: 100%;
+            .footer-social {
+                justify-content: center;
             }
         }
 
-        /* Telas super pequenas (ex: iPhone SE) */
+        /* Telas super pequenas */
         @media (max-width: 400px) {
             .stats-grid {
-                grid-template-columns: 1fr; /* Empilha as estatísticas em 1 coluna para total segurança */
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -699,15 +729,15 @@
         </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <span class="tag-hero">Grande Florianópolis</span>
+            <span class="tag-hero"><i class="ph-fill ph-map-pin"></i> Grande Florianópolis</span>
             <h1>O jeito certo de alugar e gerir imóveis.</h1>
-            <p>Esqueça a burocracia e as letras miúdas. Conectamos proprietários e inquilinos com um atendimento próximo, ágil e 100% transparente.</p>
+            <p>Esqueça a burocracia e letras miúdas. Cuidamos de tudo para você: da divulgação do seu imóvel à gestão completa da locação, com agilidade, transparência e atendimento próximo.</p>
             <div class="hero-buttons">
-                <button class="btn btn-primary" onclick="openWhatsApp('inquilino')">
-                    <img src="img/alugar.png" alt="Alugar" class="btn-icon"> Quero Alugar
+                <button class="btn btn-primary" onclick="openWhatsApp('proprietario')">
+                    <img src="img/anunciar.png" alt="Anunciar" class="btn-icon"> Quero anunciar
                 </button>
-                <button class="btn btn-outline" onclick="openWhatsApp('proprietario')">
-                    <img src="img/anunciar.png" alt="Anunciar" class="btn-icon"> Quero Anunciar
+                <button class="btn btn-outline" onclick="openWhatsApp('inquilino')">
+                    <img src="img/alugar.png" alt="Alugar" class="btn-icon"> Quero Alugar
                 </button>
             </div>
         </div>
@@ -716,57 +746,92 @@
     <section class="solutions reveal">
         <div class="section-header">
             <h2>Soluções pensadas para você</h2>
-            <p>Seja para encontrar seu novo lar ou para rentabilizar seu patrimônio, nós simplificamos o caminho.</p>
+            <p>Seja para encontrar um novo espaço ou gerar renda com seu imóvel, nós simplificamos o caminho.</p>
         </div>
 
         <div class="tabs-nav">
-            <button class="tab-btn active" onclick="openTab(event, 'tab-alugar')">Para Inquilinos</button>
-            <button class="tab-btn" onclick="openTab(event, 'tab-anunciar')">Para Proprietários</button>
+            <button class="tab-btn active" onclick="openTab(event, 'tab-anunciar')">Para Proprietários</button>
+            <button class="tab-btn" onclick="openTab(event, 'tab-alugar')">Para Inquilinos</button>
         </div>
 
-        <div id="tab-alugar" class="tab-content active">
+        <div id="tab-anunciar" class="tab-content active">
             <div class="features-grid">
                 <div class="feature-card">
-                    <img src="img/agil2.png" alt="Aprovação Ágil" class="feature-icon-img">
-                    <h3>Aprovação Ágil</h3>
-                    <p>Processo de análise de crédito desburocratizado para você pegar as chaves o mais rápido possível.</p>
+                    <i class="ph ph-megaphone feature-icon-ph"></i>
+                    <h3>Mais visibilidade, zero custo</h3>
+                    <p>Seu imóvel anunciado gratuitamente nos maiores portais imobiliários, com estratégia para gerar mais contatos qualificados.</p>
                 </div>
                 <div class="feature-card">
-                    <img src="img/humano.png" alt="Atendimento Humano" class="feature-icon-img">
-                    <h3>Atendimento Humano</h3>
-                    <p>Você não é só um número. Nossa equipe acompanha você desde a visita até a assinatura do contrato.</p>
+                    <img src="img/rentabilidade.png" alt="Mais lucro, menos taxas" class="feature-icon-img">
+                    <h3>Mais lucro, menos taxas</h3>
+                    <p>Eliminamos cobranças comuns: nada de 13º aluguel e zero custo com a emissão da DIMOB.</p>
                 </div>
                 <div class="feature-card">
-                    <img src="img/supresa.png" alt="Sem Surpresas" class="feature-icon-img">
-                    <h3>Sem Surpresas</h3>
-                    <p>Contratos claros e transparentes. Você sabe exatamente o que está pagando, sem taxas ocultas.</p>
+                    <img src="img/gestao.png" alt="Inquilinos mais seguros" class="feature-icon-img">
+                    <h3>Inquilinos mais seguros</h3>
+                    <p>Você não precisa contar com a sorte. Utilizamos análise de perfil, garantias e sistema antifraude para mais segurança na escolha.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="ph ph-shield-check feature-icon-ph"></i>
+                    <h3>Garantias que protegem você</h3>
+                    <p>Seguro-fiança, LOFT, título de capitalização ou fiador, trabalhamos com opções que protegem seu imóvel.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="img/tranquilidade.png" alt="Tranquilidade total" class="feature-icon-img">
+                    <h3>Tranquilidade total</h3>
+                    <p>Cuidamos de toda a jornada: atendimento, visitas, vistorias, contratos, cobrança e suporte.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="ph ph-headset feature-icon-ph"></i>
+                    <h3>Atendimento que resolve</h3>
+                    <p>Comunicação rápida, direta e sem burocracia. Você sempre sabe o que está acontecendo.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="ph ph-camera feature-icon-ph"></i>
+                    <h3>Vistoria detalhada e segura</h3>
+                    <p>Laudos completos com fotos e descrições técnicas, garantindo segurança na entrada e saída do inquilino.</p>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 40px;">
-                <button class="btn btn-primary" onclick="openWhatsApp('inquilino')">Encontrar meu novo lar</button>
+                <button class="btn btn-primary" onclick="openWhatsApp('proprietario')">Quero anunciar meu imóvel</button>
             </div>
         </div>
 
-        <div id="tab-anunciar" class="tab-content">
+        <div id="tab-alugar" class="tab-content">
             <div class="features-grid">
                 <div class="feature-card">
-                    <img src="img/gestao.png" alt="Gestão Segura" class="feature-icon-img">
-                    <h3>Gestão Segura</h3>
-                    <p>Protegemos seu patrimônio com vistorias detalhadas e criteriosa análise de perfil dos inquilinos.</p>
+                    <img src="img/humano.png" alt="Atendimento humano" class="feature-icon-img">
+                    <h3>Atendimento humano</h3>
+                    <p>Acompanhamento em todas as etapas, da visita à assinatura e durante toda a locação, com suporte contínuo quando necessitar.</p>
                 </div>
                 <div class="feature-card">
-                    <img src="img/rentabilidade.png" alt="Rentabilidade" class="feature-icon-img">
-                    <h3>Rentabilidade</h3>
-                    <p>Divulgação estratégica para alugar seu imóvel no menor tempo e com o valor justo de mercado.</p>
+                    <img src="img/supresa.png" alt="Sem surpresas" class="feature-icon-img">
+                    <h3>Sem surpresas</h3>
+                    <p>Contratos claros e transparentes, sem taxas escondidas.</p>
                 </div>
                 <div class="feature-card">
-                    <img src="img/tranquilidade.png" alt="Tranquilidade Total" class="feature-icon-img">
-                    <h3>Tranquilidade Total</h3>
-                    <p>Nós cuidamos da cobrança, repasses e manutenções. Você só acompanha os resultados.</p>
+                    <i class="ph ph-magnifying-glass feature-icon-ph"></i>
+                    <h3>Vistoria detalhada</h3>
+                    <p>Registro completo do imóvel, garantindo segurança e tranquilidade.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="img/agil2.png" alt="Suporte rápido" class="feature-icon-img">
+                    <h3>Suporte rápido</h3>
+                    <p>Problema ou dúvida? Nossa equipe responde com agilidade.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="ph ph-handshake feature-icon-ph"></i>
+                    <h3>Flexibilidade de garantias</h3>
+                    <p>Trabalhamos com seguro-fiança, título de capitalização, garantidora e fiador.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="ph ph-device-mobile feature-icon-ph"></i>
+                    <h3>Comunicação digital</h3>
+                    <p>Tudo por e-mail ou WhatsApp: contrato, pagamentos e suporte, sem precisar sair de casa.</p>
                 </div>
             </div>
             <div style="text-align: center; margin-top: 40px;">
-                <button class="btn btn-primary" onclick="openWhatsApp('proprietario')">Anunciar meu imóvel</button>
+                <button class="btn btn-primary" onclick="openWhatsApp('inquilino')">Quero encontrar um imóvel</button>
             </div>
         </div>
     </section>
@@ -775,17 +840,17 @@
         <div class="method-container">
             <div class="method-text">
                 <h2>Não somos apenas mais uma imobiliária.</h2>
-                <p>Nascemos para quebrar o padrão frio do mercado. Combinamos a eficiência do digital com a empatia do atendimento presencial.</p>
-                <p>O resultado? Locações mais rápidas, seguras e com muito menos atrito entre as partes envolvidas.</p>
+                <p>Nascemos para quebrar o padrão frio do mercado. Combinamos a eficiência do digital com a empatia do atendimento humano.</p>
+                <p>Locações mais rápidas, seguras e sem complicação.</p>
                 <button class="btn btn-outline" onclick="openWhatsApp('geral')" style="margin-top: 20px;">
-                    Falar com um consultor
+                    Quero falar com a Bloco 2
                 </button>
             </div>
             <div class="stats-grid">
                 <div class="stat-box">
-                    <img src="img/agil.png" alt="Ágil" class="stat-icon-img">
-                    <h4>Ágil</h4>
-                    <span>Sem perda de tempo</span>
+                    <img src="img/pessoas.png" alt="Próximo" class="stat-icon-img">
+                    <h4>Próximo</h4>
+                    <span>Foco nas pessoas</span>
                 </div>
                 <div class="stat-box">
                     <img src="img/seguro.png" alt="Seguro" class="stat-icon-img">
@@ -798,9 +863,9 @@
                     <span>100% Transparente</span>
                 </div>
                 <div class="stat-box">
-                    <img src="img/pessoas.png" alt="Próximo" class="stat-icon-img">
-                    <h4>Próximo</h4>
-                    <span>Foco nas pessoas</span>
+                    <img src="img/agil.png" alt="Ágil" class="stat-icon-img">
+                    <h4>Ágil</h4>
+                    <span>Sem perda de tempo</span>
                 </div>
             </div>
         </div>
@@ -809,7 +874,7 @@
     <section class="regions reveal">
         <div class="section-header">
             <h2>Onde atuamos</h2>
-            <p>Conhecemos a Grande Florianópolis a fundo. Nossa expertise local garante as melhores conexões entre imóveis e inquilinos.</p>
+            <p>Conhecemos a Grande Florianópolis a fundo. Nossa expertise local conecta os imóveis certos aos inquilinos ideais.</p>
         </div>
         <div class="tags-wrapper">
             <div class="tag"><i class="ph-fill ph-map-pin"></i> São José</div>
@@ -828,16 +893,7 @@
         <div class="accordion">
             <div class="accordion-item">
                 <div class="accordion-header">
-                    Preciso de fiador para alugar?
-                    <i class="ph ph-plus accordion-icon"></i>
-                </div>
-                <div class="accordion-content">
-                    <p>Trabalhamos com diversas modalidades de garantia locatícia modernas e acessíveis, como seguro fiança e título de capitalização, para facilitar a sua locação sem depender de terceiros.</p>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <div class="accordion-header">
-                    Como é feita a avaliação do meu imóvel?
+                    1. Como é feita a avaliação do meu imóvel?
                     <i class="ph ph-plus accordion-icon"></i>
                 </div>
                 <div class="accordion-content">
@@ -846,11 +902,65 @@
             </div>
             <div class="accordion-item">
                 <div class="accordion-header">
-                    O processo é presencial ou digital?
+                    2. Vocês fazem a divulgação do imóvel? Onde?
+                    <i class="ph ph-plus accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Sim. O imóvel é divulgado nas principais plataformas do mercado, como Viva Real, Zap Imóveis e OLX, além das nossas redes sociais, ampliando o alcance e aumentando as chances de uma locação mais rápida.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    3. Como funciona a seleção dos inquilinos?
+                    <i class="ph ph-plus accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Realizamos uma análise de ficha criteriosa, aliada a sistemas antifraude, para garantir mais segurança e reduzir riscos durante a locação.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    4. O imóvel é vistoriado antes e depois da locação?
+                    <i class="ph ph-plus accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Sim. Realizamos vistoria de entrada e de saída, com laudo detalhado e registro fotográfico, assegurando transparência e proteção para ambas as partes.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    5. O aluguel é garantido?
+                    <i class="ph ph-plus accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Trabalhamos com diferentes modalidades de garantia locatícia, entre elas o Seguro Fiança, Garantidora (Loft) e Título de Capitalização. Nessas opções, a seguradora ou garantidora assume a responsabilidade pelo pagamento do aluguel conforme as condições e prazos previstos em contrato, trazendo mais segurança para o proprietário.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    6. É possível alugar com fiador?
+                    <i class="ph ph-plus accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Sim. Também trabalhamos com fiador como modalidade de garantia e, para reduzir riscos de inadimplência, realizamos uma análise criteriosa do perfil financeiro de todos os envolvidos.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    7. O processo é presencial ou digital?
                     <i class="ph ph-plus accordion-icon"></i>
                 </div>
                 <div class="accordion-content">
                     <p>Você escolhe! Podemos conduzir todo o processo de forma 100% digital para sua comodidade, ou presencialmente com o nosso atendimento próximo e consultivo.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    8. Vocês trabalham com venda?
+                    <i class="ph ph-plus accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Não. Somos especializados em locação de imóveis, o que garante um atendimento mais ágil, preciso e focado em resultados.</p>
                 </div>
             </div>
         </div>
@@ -858,8 +968,8 @@
 
     <section class="cta-final reveal">
         <h2>Pronto para uma experiência imobiliária sem dor de cabeça?</h2>
-        <button class="btn btn-primary" onclick="openWhatsApp('geral')" style="font-size: 1.2rem; padding: 20px 40px;">
-            <i class="ph-fill ph-whatsapp-logo" style="font-size: 1.5rem;"></i> Iniciar Atendimento
+        <button class="btn btn-primary" onclick="openWhatsApp('proprietario')" style="font-size: 1.2rem; padding: 20px 40px;">
+            <i class="ph-fill ph-whatsapp-logo" style="font-size: 1.5rem;"></i> Anuncie seu imóvel agora
         </button>
     </section>
 
@@ -868,9 +978,16 @@
             <a href="#" class="logo">
                 <img src="img/logofooter.png" alt="Bloco 2 Logo" class="logo-img">
             </a>
-            <div class="footer-actions">
-                <button class="btn btn-outline" onclick="openWhatsApp('proprietario')" style="padding: 10px 20px; font-size: 0.9rem;">Área do Proprietário</button>
-                <button class="btn btn-outline" onclick="openWhatsApp('inquilino')" style="padding: 10px 20px; font-size: 0.9rem;">Área do Inquilino</button>
+            
+            <div class="footer-info">
+                <p><strong>Endereço:</strong> Campolino Alves, 300 - Continente Office Prime, Capoeiras, Florianópolis/SC – 88085-110</p>
+                <p><strong>Telefone/WhatsApp:</strong> (48) 3197-3387</p>
+                <p><strong>E-mail:</strong> contato@bloco2.com</p>
+            </div>
+
+            <div class="footer-social">
+                <a href="#" target="_blank" aria-label="Instagram"><i class="ph-fill ph-instagram-logo"></i></a>
+                <a href="#" target="_blank" aria-label="Facebook"><i class="ph-fill ph-facebook-logo"></i></a>
             </div>
         </div>
         <div class="footer-bottom">
